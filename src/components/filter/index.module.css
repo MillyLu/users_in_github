@@ -1,0 +1,22 @@
+.filter{
+    margin-top: 30px;
+    text-align: right;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+
+}
+
+.filter_title{
+    font-size: 16px;
+
+}
+
+.filter_radio{
+    margin-right: -7px;
+}
+
+.filter_label1{
+    margin-right: 30px;
+}

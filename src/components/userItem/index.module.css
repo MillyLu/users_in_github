@@ -1,0 +1,53 @@
+.user{
+    height: auto;
+    border: 2px solid rgba(255, 255, 255, 0.852);
+    border-radius: 5px;
+    padding: 10px 25px;
+margin-bottom: 12px;
+transition: all 1s;
+
+
+}
+
+.user:hover{
+scale: 1.02;
+
+}
+
+.user__title{
+
+    color: #2d2d2d;
+    letter-spacing: 1.1px;
+    line-height: 18px;
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 2px #7BA7AB, 0 0 1em white, 0 0 0.2em white;
+
+    
+
+}
+
+
+
+.user__extra{
+    padding: 20px 0px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    justify-items: center;
+    
+}
+
+.user__extra_img{
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 4;
+}
+
+.user__extra_repo, .user__extra_followers, .user__extra_link{
+    grid-column: 2;
+    height: 30px;
+}
+

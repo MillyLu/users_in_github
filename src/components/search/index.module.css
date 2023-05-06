@@ -1,0 +1,46 @@
+.form{
+width: auto;
+position: relative;
+
+}
+
+.field{
+    width: 400px;
+    height: 42px;
+    border-radius: 20px;
+    padding: 10px 15px;
+    border: 2px solid #7BA7AB;
+    border-radius: 5px;
+    outline: none;
+    background: #F9F0DA;
+    color: black;
+    font-size: 18px;
+}
+
+.button {
+    position: absolute; 
+    top: 0;
+    right: 0px;
+    width: 42px;
+    height: 42px;
+    border: none;
+    background: #7BA7AB;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+  }
+
+  .button:before {
+    content: "\1F50D";
+    font-size: 16px;
+    color: #F9F0DA;
+  }
+
+/*.button{
+    margin-left: 10px;
+    width: 70px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: cadetblue;
+    color: aliceblue;
+}*/
+
