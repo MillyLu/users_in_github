@@ -9,19 +9,18 @@ export function UserItem(props) {
     const [repoNumbers, setRepoNumbers] = useState('');
     const [followers, setFollowers] = useState('');
 
-    console.log(props.pub);
-
+  
     const getUserRepos = useCallback( async() =>  {
     console.log(props.login);
         const response = await axios.get(`https://api.github.com/users/${props.login}`);
-        console.log(response.data);
+
         setRepoNumbers(response.data.public_repos);
       }, [props.login]);
 
       const getUserFollowers = useCallback( async() => {
     
         const response = await axios.get(`https://api.github.com/users/${props.login}`);
-        console.log(response.data);
+
         setFollowers(response.data.followers);
       }, [props.login]); 
 

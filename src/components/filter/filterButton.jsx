@@ -1,11 +1,12 @@
+import { useCallback } from 'react';
 import styles from './index.module.css';
 
 
 export function FilterButton ({setSort}) {
 
-    function onHandleChange (e) {
+    const onHandleChange = useCallback((e)  => {
         setSort(e.target.value)
-    }
+    }, [setSort])
 
     return(
         <div className={styles.filter}>

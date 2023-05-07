@@ -1,8 +1,8 @@
 import styles from './index.module.css';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export function Pagination ({ usersPerPage, totalUsers, paginate }) {
-    console.log(totalUsers);
+
 
     const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(7);
     const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
@@ -14,11 +14,11 @@ export function Pagination ({ usersPerPage, totalUsers, paginate }) {
     for(let i = 1; i <= Math.ceil(totalUsers / usersPerPage); i++) {
         pages.push(i)
     }
-///
-    const onHandleClick = (e) => {
+
+    const onHandleClick = useCallback((e) => {
         setCurrentPage(Number(e.target.id));
 
-    }
+    },[setCurrentPage]);
 
     const renderPageNumbers = pages.map((number) => {
         if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
@@ -37,46 +37,46 @@ export function Pagination ({ usersPerPage, totalUsers, paginate }) {
         }
       });
 
-      const onHandleNextbtn = () => {
+      const onHandleNextButton = useCallback(() => {
         setCurrentPage(currentPage + 1);
+        paginate(currentPage+1)
     
         if (currentPage + 1 > maxPageNumberLimit) {
           setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
           setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
         }
-      };
+      },[currentPage, maxPageNumberLimit, minPageNumberLimit, pageNumberLimit, paginate]);
     
-      const onHandlePrevbtn = () => {
+      const onHandlePrevButton = useCallback(() => {
         setCurrentPage(currentPage - 1);
+        paginate(currentPage-1)
     
         if ((currentPage - 1) % pageNumberLimit === 0) {
           setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
           setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit);
         }
-      };
+      }, [currentPage, maxPageNumberLimit, minPageNumberLimit, pageNumberLimit, paginate]);
 
       let pageIncrementBtn = null;
   if (pages.length > maxPageNumberLimit) {
-    pageIncrementBtn = <li onClick={onHandleNextbtn}> &hellip; </li>;
+    pageIncrementBtn = <li onClick={onHandleNextButton}> &hellip; </li>;
   }
 
   let pageDecrementBtn = null;
   if (minPageNumberLimit >= 1) {
-    pageDecrementBtn = <li onClick={onHandlePrevbtn}> &hellip; </li>;
+    pageDecrementBtn = <li onClick={onHandlePrevButton}> &hellip; </li>;
   }
 
 
 
-////
-
-    return(
+  return(
         <div className={styles.pagination}>
             <ul className={styles.pagination_list}>
                
             <li>
           <button
             className={styles.pagination_button}
-            onClick={onHandlePrevbtn}
+            onClick={onHandlePrevButton}
             disabled={currentPage === pages[0] ? true : false}
           >
             Предыдущая
@@ -88,7 +88,7 @@ export function Pagination ({ usersPerPage, totalUsers, paginate }) {
 
         <li>
           <button className={styles.pagination_button}
-            onClick={onHandleNextbtn}
+            onClick={onHandleNextButton}
             disabled={currentPage === pages[pages.length - 1] ? true : false}
           >
             Следующая

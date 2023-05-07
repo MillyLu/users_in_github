@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 import { Main } from '../pages/main';
 import { Search } from '../components/search/search';
 import { FilterButton } from '../components/filter/filterButton';
@@ -66,24 +67,28 @@ describe('<FilterButton />', () => {
           const exampleInput = screen.getByLabelText('От большего к меньшему');
           expect(exampleInput).toBeInTheDocument();
       }); 
-  })
+  });
+
+
   describe("Callbacks tests", () => {
+
       it("should call 'onClick' prop", () => {
 
 
-              const mockSetter = jest.fn();
+      const mockSetter = jest.fn();
 
-  render(<FilterButton  setSort={mockSetter} />);
+      render(<FilterButton  setSort={mockSetter} />);
 
-  const exampleInput1 = screen.getByLabelText('От меньшего к большему');
+      const exampleInput1 = screen.getByLabelText('От меньшего к большему');
 
-  fireEvent.click(exampleInput1)
-            
+      fireEvent.click(exampleInput1);
+     
+      expect(mockSetter).toHaveBeenCalledWith("asc");
 
-            
-              expect(mockSetter).toHaveBeenCalledWith("asc");
-            })
       });
+
+      });
+
    });
 
 

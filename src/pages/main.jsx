@@ -33,19 +33,8 @@ export function Main() {
     getUserByLogin();
   }, [login, currentPage, usersPerPage, sort]);
   
-  const lastUserIndex = currentPage * usersPerPage;
-  const firstUserIndex = lastUserIndex - usersPerPage;
-  const currentUser = users.slice(firstUserIndex, lastUserIndex)
-
-
   const paginate = page => setCurrentPage(page);
 
-  //const nextPage = () => setCurrentPage( prev => prev + 1);
-  //const prevPage = () => setCurrentPage ( prev => prev -1);
-console.log(currentPage);
-console.log(firstUserIndex);
-console.log(lastUserIndex);
-console.log(currentUser);
 
 
   return (
